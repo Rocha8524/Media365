@@ -16,13 +16,7 @@ A multimedia search web application that gives general information, video clips 
 
 ---
 
-## What is Media365
-
-Have you ever been at a bar, and been talking about music or movies with a group of people? Normally, conversations flow around the "Hey, have you seen this movie?!" or "Did you ever hear of this band"?
-
-Another dilema we often find ourselves in is our Constant Comfort Media picks. How many times have you watched the Office now? 7 times? What about that Motley Crew record? Probably in the _hundreds_ by now...
-
-#### **This is where Media365 comes in.**
+#### **This is Media365**
 
 A streamlined WEBAPP (mobile coming soon) to create a Media focused to-do list!
 
@@ -70,24 +64,9 @@ You can finally hang up the Office in here, just incase somehow you forgot that 
 
 ---
 
-## Files
-
-- root
-  - index.html
-  - README.MD
-- assets
-  - hover-min.css
-  - project-1.css
-- js
-  - jquery-3.4.1.min.js
-  - require.js
-  - script.js
-
----
-
 ## Functionality
 
-- Currently, No Installation necessary. Simply navigate to [the Medo webpage](https://rocha8524.github.io/Media365/) to begin using.
+- Currently, No Installation necessary. Simply navigate to [the Media365 webpage](https://rocha8524.github.io/Media365/) to begin using.
 - Google Chrome is our recommended web browser, but your preferred browser will work as well.
 - User can input an artist/movie's name and add them to their respective list
 - A list item will display the following:
