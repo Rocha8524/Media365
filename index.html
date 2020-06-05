@@ -1,9 +1,239 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="h-100">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0-11/css/all.min.css"
+    />
+
+    <head>
+      <!--This is ref to animate.css-->
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
+      />
+    </head>
+    <!--<link href="css/hover-min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="assets/css/media365.css" />
+    <title>Media Searcher</title>
   </head>
-  <body></body>
+
+  <body class="d-flex flex-column h-100">
+    <!-- Movie Modal -->
+    <div
+      id="movieModal"
+      class="modal fade bd-example-modal-lg"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myLargeModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content custom-modal">
+          <div class="row">
+            <h2 id="movie-title" class="w-100"></h2>
+            <div class="start-content">
+              <img
+                id="movie-image"
+                src=""
+                alt="movie-poster"
+                class="col-3 d-flex align-center"
+              />
+              <h4 class="text-left font-weight-bold">Summary</h4>
+              <p id="movie-summary"></p>
+            </div>
+          </div>
+          <div class="middle-content">
+            <h4>Release Date</h4>
+            <h4 id="release-date"></h4>
+            <div class="row mx-auto">
+              <h4>Video Content</h4>
+              <div id="youtube-content" class="video-container"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Music Modal -->
+    <div
+      id="musicModal"
+      class="modal fade bd-example-modal-lg"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myLargeModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content custom-modal">
+          <div class="row">
+            <h2 id="band-name" class="w-100"></h2>
+            <div class="start-content">
+              <img id="band-image" src="" alt="album-cover" />
+              <h4 class="font-weight-bold text-left">Band Bio</h4>
+              <p id="band-bio" class="text-left"></p>
+            </div>
+            <div class="row middle-content">
+              <div id="genre"></div>
+              <div class="col-6">
+                <h4>Similar Bands</h4>
+                <div id="similar-bands"></div>
+              </div>
+              <div class="col-6">
+                <h4>Top Tracks</h4>
+                <div id="top-tracks"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-expand-md navbar-light bg-faded">
+      <ul class="navbar-nav navbar-cstm">
+        <li class="nav-item dropdown">
+          <button
+            class="nav-link nav-item dropdown-toggle favorites-btn"
+            href="http://example.com"
+            id="navbarDropdownMenuLink"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <span id="favorites-text">Favorites</span>
+          </button>
+          <div
+            class="dropdown-menu custom-bg"
+            aria-labelledby="navbarDropdownMenuLink"
+          >
+            <ul
+              id="favorites-list"
+              class="list-group list-group-flush px-1 pb-2"
+            ></ul>
+          </div>
+        </li>
+        <li class="nav-item">
+          <button
+            id="clear-fave-btn"
+            class="nav-link"
+            href="http://example.com"
+            id=""
+            data-toggle=""
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Clear Favorites
+          </button>
+        </li>
+        <li>
+          <a href="https://github.com/Rocha8524">
+            <img
+              src="https://pngimg.com/uploads/github/github_PNG80.png"
+              width="50"
+              alt="Media Player on Github"
+            />
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Site Header and search bar -->
+    <div class="container-fluid">
+      <div class="row site-head rounded">
+        <h1
+          id="logo"
+          class="medo-style mx-auto animated lightSpeedIn delay-.5s rounded"
+        >
+          Media 365
+        </h1>
+      </div>
+      <div class="row">
+        <input
+          type="text"
+          id="search"
+          class="col-lg-8 col-sm-10 col-xs-10 mx-auto animated fadeInUp delay-.5s rounded"
+          autocomplete="off"
+          placeholder="add a recommendation"
+        />
+      </div>
+
+      <!-- Instruction -->
+      <div class="row col-lg-12 mx-auto justify-content-center">
+        <p class="animated fadeIn delay-1s instruct-paragraph">
+          Type in items for your
+          <span class="medo-inline rounded">Media365</span> list above,<br />
+          then click on the List you would like it to appear in!
+        </p>
+      </div>
+
+      <div id="rec-message"></div>
+      <div id="recommended"></div>
+
+      <!-- MEDO containers -->
+      <div class="container">
+        <div class="row animated slideInLeft delay-1.25s">
+          <!-- Movie button and list -->
+          <div class="col-lg-6 col-sm-12">
+            <div class="mx-auto medo hvr-float-shadow rounded">
+              <h2 id="movie-btn" class="medo-box text-center medo-style">
+                Watch
+              </h2>
+            </div>
+            <div class="animated slideInRight delay-1.25s">
+              <div class="mx-auto rounded">
+                <ul
+                  id="movie-medo"
+                  class="list-group list-group-flush px-1 pb-2"
+                ></ul>
+              </div>
+            </div>
+          </div>
+          <!-- Music button and list -->
+          <div class="col-lg-6 col-sm-12">
+            <div class="mx-auto medo hvr-float-shadow rounded">
+              <h2 id="music-btn" class="medo-box text-center medo-style">
+                Listen
+              </h2>
+            </div>
+            <div class="animated slideInRight delay-1.25s">
+              <div class="mx-auto rounded">
+                <ul
+                  id="music-medo"
+                  class="list-group list-group-flush px-1 pb-2"
+                ></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-5"></div>
+    </div>
+
+    <footer class="footer mt-auto py-3">
+      <div class="container-fluid padding">
+        <div class="row alert text-center">
+          <div class="col-12">
+            <h6>Copyright&copy; Alexander Rocha 2020</h6>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.0/firebase-database.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.15.0/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment.min.js"></script>
+    <script src="assets/script/script.js"></script>
+  </body>
 </html>
